@@ -1,9 +1,8 @@
 ---
-- name: Create resource group
-  hosts: all
-
-  tasks:
+- name: Create a resource group
   azure_rm_resourcegroup:
-    name: {{ rgname }}
-    location: {{ azlocation}}
-    tags: {{ tagname }}
+    name: myResourceGroup
+    location: westus
+    tags:
+        environment: testing
+        delete: never    
