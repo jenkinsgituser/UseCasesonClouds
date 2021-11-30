@@ -1,9 +1,0 @@
----
-- name: Create resource group
-  hosts: localhost
-
-  tasks:
-  azure_rm_resourcegroup:
-    name: "{{ resourcegroup_name }}"
-    location: "{{ location}}"
-    tags: {{ tag }}

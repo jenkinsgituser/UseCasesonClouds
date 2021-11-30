@@ -4,6 +4,6 @@
 
   tasks:
   azure_rm_resourcegroup:
-    name: "{{ resourcegroup_name }}"
-    location: "{{ location}}"
-    tags: {{ tag }}
+    name: {{ rgname }}
+    location: {{ azlocation}}
+    tags: {{ tagname }}
