@@ -24,6 +24,6 @@
         resource_group: myresourcegroup-jk
         virtual_network_name: myvirtualnetworkjktower
         name: myvirtualnetworkjktower-subnet
-        address_prefix_cidr: "10.1.0.0/24"
+        address_prefixes_cidr: "10.1.0.0/24"
         tags:
           environment: DEV
