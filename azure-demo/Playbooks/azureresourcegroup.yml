@@ -8,3 +8,6 @@
       azure_rm_resourcegroup:
         name: myresourcegroup-jk
         location: centralindia
+        tags:
+          testing: testing
+          delete: never 
