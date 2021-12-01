@@ -10,3 +10,20 @@
         location: centralindia
         tags:
           environment: DEV
+          
+    - name: Create a virtual network
+      azure_rm_virtualnetwork:
+        resource_group: myresourcegroup-jk
+        name: myvirtualnetworkjktower
+        address_prefixes_cidr: "10.1.0.0/16"
+        tags:
+          environment: DEV
+          
+    - name: Create a virtual subnet
+      azure_rm_subnet:
+        resource_group: myresourcegroup-jk
+        virtual_network_name: myvirtualnetworkjktower
+        name: myvirtualnetworkjktower-subnet
+        address_prefix_cidr: "10.1.0.0/24"
+        tags:
+          environment: DEV

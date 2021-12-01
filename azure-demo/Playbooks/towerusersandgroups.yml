@@ -1,0 +1,23 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+  - name: create a user jdoe
+    tower_user:
+      username: jdoe
+      password: foobarbaz
+      email: jdoe@example.org
+      first_name: John
+      last_name: Doe
+      superuser: no
+      tower_verify_ssl: yes
+      state: present
+      tower_config_file: tower_cli.cfg
+  - name: Add group to test_inventory
+    tower_group:
+      name: iosxr
+      description: "test iosxr_group"
+      inventory: test_inventory
+      variables: "ansible_network_os: iosxr"
+      state: present
+      tower_config_file: "~/Sumit/tower_cli.cfg"
