@@ -1,6 +1,7 @@
 ---
 - name: Create Azure resource group
   hosts: localhost
+  connection: local
   
   tasks:
   - name: Create a resource group
