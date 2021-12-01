@@ -25,3 +25,29 @@
         virtual_network_name: myvirtualnetworkjktower
         name: myvirtualnetworkjktower-subnet
         address_prefix_cidr: "10.1.0.0/24"
+
+    - name: Create a security group to allow SSH    
+      azure_rm_securitygroup:
+        resource_group: myresourcegroup-jk
+        name: mysecgroupjk
+        purge_rules: yes
+        rules:
+          - name: 'AllowSSH'
+            protocol: Tcp
+            source_address_prefix:
+              - '0.0.0.0/0'
+            destination_port_range:
+              - 22
+              - 3389
+            access: Allow
+            priority: 100
+            direction: Inbound
+          - name: 'AllowMultiplePorts'
+            protocol: Tcp
+            source_address_prefix:
+              - '0.0.0.0/0'
+            destination_port_range:
+              - 80
+              - 443
+            access: Allow
+            priority: 101
