@@ -6,5 +6,5 @@
   tasks:
     - name: Create a resource group
       azure_rm_resourcegroup:
-        name: myresourcegroup-jk
+        name: kumarjk-rg
         location: centralindia
