@@ -9,5 +9,5 @@
         name: myresourcegroup-jk
         location: centralindia
         tags:
-          testing: testing
+          environment: DEV
           delete: never
