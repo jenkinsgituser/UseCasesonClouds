@@ -88,7 +88,7 @@
         tags:
           environment: "{{environment_name}}"
       
-    - name: 8 Create the virtual network interface card    
+    - name: 8 Create the virtual machine    
       azure_rm_virtualmachine:
         resource_group: "{{rg_group_name}}"
         name: "{{virtual_machine_name}}"
