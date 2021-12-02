@@ -73,9 +73,7 @@
         resource_group: myresourcegroup-jk
         name: RHEL8JK
         virtual_network_name: myvirtualnetworkjktower
-        subnet: myvirtualnetworkjktower-subnet
-        public_ip_name: myvirtualnetworkjk_public_ip
-        security_group: mysecgroupjk
+        subnet_name: myvirtualnetworkjktower-subnet        
         admin_username: adminuser
         admin_password: Windows1-2Windows
         vm_size: Standard_B2s
