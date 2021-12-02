@@ -10,7 +10,8 @@
     virtual_machine_name: "DEV01RHEL8JK2021"
     network_interface_card_name: "dev01networkinterfacecardjk"
     environment_name: "DEV"
-    publice_subnet_name: "myvirtualnetworkjktower-subnet"
+    publice_subnet_name: "dev01publicsubnetjk"
+    security_group_name: "dev01securitygroupjk"
   
   tasks:
     - name: 1 Create a resource group
@@ -46,7 +47,7 @@
     - name: 5 Create a security group to allow SSH    
       azure_rm_securitygroup:
         resource_group: "{{rg_group_name}}"
-        name: mysecgroupjk
+        name: "{{security_group_name}}"
         purge_rules: yes
         rules:
           - name: 'AllowSSH'
@@ -78,7 +79,7 @@
         virtual_network_name: "{{virtual_network_name}}"
         subnet: "{{publice_subnet_name}}"
         public_ip_name: "{{public_ip_name}}"
-        security_group: mysecgroupjk
+        security_group: "{{security_group_name}}"
         
     - name: 7 create a storage account
       azure_rm_storageaccount:

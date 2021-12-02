@@ -11,15 +11,15 @@
   tasks:
     - name: 1 Create a resource group
       azure_rm_resourcegroup:
-        name: {{rg_group_name}}
+        name: "{{rg_group_name}}"
         location: centralindia
         tags:
-          environment: {{environment_name}}
+          environment: "{{environment_name}}"
                  
     - name: 2 create a storage account
       azure_rm_storageaccount:
-        resource_group: {{rg_group_name}}
-        name: {{storage_account_name}}
+        resource_group: "{{rg_group_name}}"
+        name: "{{storage_account_name}}"
         type: Standard_RAGRS
         tags:
-          environment: {{environment_name}}
+          environment: "{{environment_name}}"
