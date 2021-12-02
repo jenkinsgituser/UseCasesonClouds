@@ -67,3 +67,21 @@
         subnet: myvirtualnetworkjktower-subnet
         public_ip_name: myvirtualnetworkjk_public_ip
         security_group: mysecgroupjk
+        
+    - name: 7 Create the virtual network interface card    
+      azure_rm_virtualmachine:
+        resource_group: myresourcegroup-jk
+        name: RHEL8JK
+        virtual_network_name: myvirtualnetworkjktower
+        subnet: myvirtualnetworkjktower-subnet
+        public_ip_name: myvirtualnetworkjk_public_ip
+        security_group: mysecgroupjk
+        admin_username: adminuser
+        admin_password: Windows1-2Windows
+        vm_size: Standard_B2s
+        image:
+          offer: "RHEL"
+          publisher: "RedHat"
+          sku: "8"
+          version: latest
+        
