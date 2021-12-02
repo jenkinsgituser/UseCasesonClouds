@@ -21,7 +21,7 @@
           
     - name: 2 Create a virtual network
       azure_rm_virtualnetwork:
-        resource_group: {{ rg_group_name }}
+        resource_group: "{{ rg_group_name }}"
         name: {{ virtual_network_name }}
         address_prefixes_cidr: "10.1.0.0/16"
         tags:
@@ -29,7 +29,7 @@
           
     - name: 3 Create a virtual subnet
       azure_rm_subnet:
-        resource_group: {{ rg_group_name }}
+        resource_group: "{{ rg_group_name }}"
         virtual_network_name: {{ virtual_network_name }}
         name: myvirtualnetworkjktower-subnet
         address_prefix_cidr: "10.1.0.0/24"
