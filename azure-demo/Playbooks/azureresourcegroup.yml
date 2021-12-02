@@ -10,6 +10,7 @@
     virtual_machine_name: "DEV01RHEL8JK2021"
     network_interface_card_name: "dev01networkinterfacecardjk"
     environment_name: "DEV"
+    publice_subnet_name: "myvirtualnetworkjktower-subnet"
   
   tasks:
     - name: 1 Create a resource group
@@ -26,3 +27,83 @@
         address_prefixes_cidr: "10.1.0.0/16"
         tags:
           environment: "{{environment_name}}"
+
+    - name: 3 Create a virtual subnet
+      azure_rm_subnet:
+        resource_group: "{{rg_group_name}}"
+        virtual_network_name: "{{virtual_network_name}}"
+        name: "{{publice_subnet_name}}"
+        address_prefix_cidr: "10.1.0.0/24"
+        
+    - name: 4 Create a public IP address
+      azure_rm_publicipaddress:
+        resource_group: "{{rg_group_name}}"
+        name: "{{ public_ip_name }}"
+        allocation_method: static
+        tags:
+          environment: "{{environment_name}}"   
+
+    - name: 5 Create a security group to allow SSH    
+      azure_rm_securitygroup:
+        resource_group: "{{rg_group_name}}"
+        name: mysecgroupjk
+        purge_rules: yes
+        rules:
+          - name: 'AllowSSH'
+            protocol: Tcp
+            source_address_prefix:
+              - '0.0.0.0/0'
+            destination_port_range:
+              - 22
+              - 3389
+            access: Allow
+            priority: 100
+            direction: Inbound
+          - name: 'AllowMultiplePorts'
+            protocol: Tcp
+            source_address_prefix:
+              - '0.0.0.0/0'
+            destination_port_range:
+              - 80
+              - 443
+            access: Allow
+            priority: 101
+        tags:
+          environment: "{{environment_name}}" 
+    
+    - name: 6 Create the virtual network interface card    
+      azure_rm_networkinterface:
+        resource_group: "{{rg_group_name}}"
+        name: "{{network_interface_card_name}}"
+        virtual_network_name: "{{virtual_network_name}}"
+        subnet: "{{publice_subnet_name}}"
+        public_ip_name: "{{public_ip_name}}"
+        security_group: mysecgroupjk
+        
+    - name: 7 create a storage account
+      azure_rm_storageaccount:
+        resource_group: "{{rg_group_name}}"
+        name: "{{storage_account_name}}"
+        type: Standard_RAGRS
+        tags:
+          environment: "{{environment_name}}"
+      
+    - name: 8 Create the virtual network interface card    
+      azure_rm_virtualmachine:
+        resource_group: "{{rg_group_name}}"
+        name: "{{virtual_machine_name}}"
+        virtual_network_name: "{{virtual_network_name}}"
+        subnet_name: "{{publice_subnet_name}}"
+        network_interface_names: "{{network_interface_card_name}}"
+        storage_account_name: "{{storage_account_name}}"
+        admin_username: adminuser
+        admin_password: Windows1-2Windows
+        vm_size: Standard_B2s
+        image:
+          offer: "RHEL"
+          publisher: "RedHat"
+          sku: "8"
+          version: latest
+        tags:
+          environment: "{{environment_name}}"
+                  
