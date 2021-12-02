@@ -34,7 +34,6 @@
         resource_group: myresourcegroup-jk
         name: myvirtualnetworkjk_public_ip
         allocation_method: static
-      register: myvirtualnetworkjk_public_ip
         tags:
           environment: DEV      
 
