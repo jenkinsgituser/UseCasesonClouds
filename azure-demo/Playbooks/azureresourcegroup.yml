@@ -73,7 +73,8 @@
         resource_group: myresourcegroup-jk
         name: RHEL8JK
         virtual_network_name: myvirtualnetworkjktower
-        subnet_name: myvirtualnetworkjktower-subnet        
+        subnet_name: myvirtualnetworkjktower-subnet
+        network_interface_names: myjk-network-nic
         admin_username: adminuser
         admin_password: Windows1-2Windows
         vm_size: Standard_B2s
