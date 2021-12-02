@@ -22,7 +22,7 @@
     - name: 2 Create a virtual network
       azure_rm_virtualnetwork:
         resource_group: "{{ rg_group_name }}"
-        name: {{ virtual_network_name }}
+        name: "{{ virtual_network_name }}"
         address_prefixes_cidr: "10.1.0.0/16"
         tags:
           environment: {{ environment_name }}
@@ -30,21 +30,21 @@
     - name: 3 Create a virtual subnet
       azure_rm_subnet:
         resource_group: "{{ rg_group_name }}"
-        virtual_network_name: {{ virtual_network_name }}
+        virtual_network_name: "{{ virtual_network_name }}"
         name: myvirtualnetworkjktower-subnet
         address_prefix_cidr: "10.1.0.0/24"
         
     - name: 4 Create a public IP address
       azure_rm_publicipaddress:
-        resource_group: {{ rg_group_name }}
-        name: {{ public_ip_name }}
+        resource_group: "{{ rg_group_name }}"
+        name: "{{ public_ip_name }}"
         allocation_method: static
         tags:
           environment: {{ environment_name }}     
 
     - name: 5 Create a security group to allow SSH    
       azure_rm_securitygroup:
-        resource_group: {{ rg_group_name }}
+        resource_group: "{{ rg_group_name }}"
         name: mysecgroupjk
         purge_rules: yes
         rules:
@@ -72,29 +72,29 @@
     
     - name: 6 Create the virtual network interface card    
       azure_rm_networkinterface:
-        resource_group: {{ rg_group_name }}
-        name: {{ network-interface_card_name }}
-        virtual_network_name: {{ virtual_network_name }}
+        resource_group: "{{ rg_group_name }}"
+        name: "{{ network-interface_card_name }}"
+        virtual_network_name: "{{ virtual_network_name }}"
         subnet: myvirtualnetworkjktower-subnet
-        public_ip_name: {{ public_ip_name }}
+        public_ip_name: "{{ public_ip_name }}"
         security_group: mysecgroupjk
         
     - name: 7 create a storage account
       azure_rm_storageaccount:
-        resource_group: {{ rg_group_name }}
-        name: {{ storage_account_name }}
+        resource_group: "{{ rg_group_name }}"
+        name: "{{ storage_account_name }}"
         type: Standard_RAGRS
         tags:
           environment: {{ environment_name }}
       
     - name: 8 Create the virtual network interface card    
       azure_rm_virtualmachine:
-        resource_group: {{ rg_group_name }}
-        name: {{ virtual_machine_name }}
-        virtual_network_name: {{ virtual_network_name }}
+        resource_group: "{{ rg_group_name }}"
+        name: "{{ virtual_machine_name }}"
+        virtual_network_name: "{{ virtual_network_name }}"
         subnet_name: myvirtualnetworkjktower-subnet
-        network_interface_names: {{ network-interface_card_name }}
-        storage_account_name: {{ storage_account_name }}
+        network_interface_names: "{{ network-interface_card_name }}"
+        storage_account_name: "{{ storage_account_name }}"
         admin_username: adminuser
         admin_password: Windows1-2Windows
         vm_size: Standard_B2s
