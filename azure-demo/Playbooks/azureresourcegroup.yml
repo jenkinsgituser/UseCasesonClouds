@@ -3,13 +3,13 @@
   hosts: localhost
   connection: local
   vars:
-    rg_group_name: dev01resourcegroupjk
-    virtual_network_name: dev01virtualnetworkjk
-    storage_account_name: dev01storageaccountjk
-    public_ip_name: dev01publicipjk
-    virtual_machine_name: DEV01RHEL8JK2021
-    network-interface_card_name: dev01networkinterfacecardjk
-    environment_name: DEV
+    rg_group_name: "dev01resourcegroupjk"
+    virtual_network_name: "dev01virtualnetworkjk"
+    storage_account_name: "dev01storageaccountjk"
+    public_ip_name: "dev01publicipjk"
+    virtual_machine_name: "DEV01RHEL8JK2021"
+    network_interface_card_name: "dev01networkinterfacecardjk"
+    environment_name: "DEV"
   
   tasks:
     - name: 1 Create a resource group
@@ -73,7 +73,7 @@
     - name: 6 Create the virtual network interface card    
       azure_rm_networkinterface:
         resource_group: "{{ rg_group_name }}"
-        name: "{{ network-interface_card_name }}"
+        name: "{{ network_interface_card_name }}"
         virtual_network_name: "{{ virtual_network_name }}"
         subnet: myvirtualnetworkjktower-subnet
         public_ip_name: "{{ public_ip_name }}"
@@ -93,7 +93,7 @@
         name: "{{ virtual_machine_name }}"
         virtual_network_name: "{{ virtual_network_name }}"
         subnet_name: myvirtualnetworkjktower-subnet
-        network_interface_names: "{{ network-interface_card_name }}"
+        network_interface_names: "{{ network_interface_card_name }}"
         storage_account_name: "{{ storage_account_name }}"
         admin_username: adminuser
         admin_password: Windows1-2Windows
