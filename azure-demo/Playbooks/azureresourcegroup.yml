@@ -3,9 +3,9 @@
   hosts: localhost
   connection: local
   vars:
-    - rg_group_name: dev01resourcegroupjk
-    - virtual_network_name: dev01virtualnetworkjk
-    - storage_account_name: dev01storageaccountjk
+    rg_group_name: dev01resourcegroupjk
+    virtual_network_name: dev01virtualnetworkjk
+    storage_account_name: dev01storageaccountjk
     - public_ip_name: dev01publicipjk
     - virtual_machine_name: DEV01RHEL8JK2021
     - network-interface_card_name: dev01networkinterfacecardjk
