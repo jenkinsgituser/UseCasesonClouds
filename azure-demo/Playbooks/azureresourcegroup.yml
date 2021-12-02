@@ -25,6 +25,13 @@
         virtual_network_name: myvirtualnetworkjktower
         name: myvirtualnetworkjktower-subnet
         address_prefix_cidr: "10.1.0.0/24"
+        
+    - name: Create a public IP address
+      azure_rm_publicipaddress:
+        resource_group: myresourcegroup-jk
+        name: myvirtualnetworkjk_public_ip
+        allocation_method: static
+      register: myvirtualnetworkjk_public_ip      
 
     - name: Create a security group to allow SSH    
       azure_rm_securitygroup:
