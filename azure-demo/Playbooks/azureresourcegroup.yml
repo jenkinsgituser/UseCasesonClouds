@@ -26,8 +26,6 @@
         virtual_network_name: myvirtualnetworkjktower
         name: myvirtualnetworkjktower-subnet
         address_prefix_cidr: "10.1.0.0/24"
-        tags:
-          environment: DEV
         
     - name: 4 Create a public IP address
       azure_rm_publicipaddress:
@@ -74,7 +72,7 @@
         public_ip_name: myvirtualnetworkjk_public_ip
         security_group: mysecgroupjk
         
-    - name: create a storage account
+    - name: 7 create a storage account
       azure_rm_storageaccount:
         resource_group: myresourcegroup-jk
         name: mystorageaccountjk01
@@ -83,7 +81,7 @@
           environment: DEV
           delete: on-exit
       
-    - name: 7 Create the virtual network interface card    
+    - name: 8 Create the virtual network interface card    
       azure_rm_virtualmachine:
         resource_group: myresourcegroup-jk
         name: RHEL8JK
