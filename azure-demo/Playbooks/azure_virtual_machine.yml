@@ -39,7 +39,7 @@
     - name: 4 Create a public IP address
       azure_rm_publicipaddress:
         resource_group: "{{rg_group_name}}"
-        name: "{{ public_ip_name }}"
+        name: "{{public_ip_name}}"
         allocation_method: static
         tags:
           environment: "{{environment_name}}"   
@@ -107,4 +107,8 @@
           version: latest
         tags:
           environment: "{{environment_name}}"
-                  
+               
+    - name: 9 Show the virtual_machine public ip
+      debug:
+        msg: "The VM instance is accessible at {{dev01publicipjk.state.ip_address}}"     
+            
