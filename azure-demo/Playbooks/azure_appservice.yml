@@ -3,9 +3,9 @@
   hosts: localhost
   connection: local
   vars:
-    - rg_group_name: jkresourcegroupdevweb01
-    - app_service_name: jkappservicedevweb01
-    - app_service_plan_name: myappserviceplan
+    - rg_group_name: jkresourcegroupdevweb02
+    - app_service_name: jkappservicedevweb02
+    - app_service_plan_name: myappserviceplan02
     - environment_name: DEV
   
   tasks:
@@ -33,7 +33,7 @@
           resource_group: "{{rg_group_name}}"
           name: "{{app_service_plan_name}}"
           is_linux: false
-          sku: B1
+          sku: F1
           tags:
           environment: "{{environment_name}}"
         
