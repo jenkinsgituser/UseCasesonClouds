@@ -22,7 +22,7 @@
         resource_group: "{{rg_group_name}}"
         name: "{{storage_account_name}}"
         type: Standard_RAGRS
-        kind: BlobStorage
+        #kind: BlobStorage
         tags:
           environment: "{{environment_name}}"
 
