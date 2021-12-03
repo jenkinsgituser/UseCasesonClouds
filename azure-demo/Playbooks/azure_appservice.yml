@@ -3,9 +3,9 @@
   hosts: localhost
   connection: local
   vars:
-    - rg_group_name: jkresourcegroupdevweb02
-    - app_service_name: jkappservicedevweb02
-    - app_service_plan_name: myappserviceplan02
+    - rg_group_name: jkresourcegroupdevweb01
+    - app_service_name: jkappservicedevweb01
+    - app_service_plan_name: myappserviceplan01
     - location: centralindia
     - environment_name: DEV
   
@@ -23,18 +23,18 @@
         name: "{{app_service_plan_name}}"
         location: "{{location}}"
         sku: F1
-        is_linux: false
+        is_linux: true
         tags:
           environment: "{{environment_name}}"      
           
-    - name: 3 Create a windows web app service with non-exist app service plan
+    - name: 3 Create a windows web app service with non-existing app service plan
       azure_rm_webapp:
         resource_group: "{{rg_group_name}}"
         name: "{{app_service_name}}"
         plan:
           resource_group: "{{rg_group_name}}"
           name: "{{app_service_plan_name}}"
-          is_linux: false
+          is_linux: true
           sku: F1
           tags:
           environment: "{{environment_name}}"
