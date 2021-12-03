@@ -30,7 +30,7 @@
         resource_group: "{{rg_group_name}}"
         name: "{{app_service_name}}"
         plan:
-          resource_group: myappserviceplan_rg
+          resource_group: "{{rg_group_name}}"
           name: "{{app_service_plan_name}}"
           is_linux: false
           sku: S1
