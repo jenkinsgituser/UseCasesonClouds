@@ -33,7 +33,7 @@
           resource_group: "{{rg_group_name}}"
           name: "{{app_service_plan_name}}"
           is_linux: false
-          sku: F1
+          sku: "F1"
           tags:
           environment: "{{environment_name}}"
         
