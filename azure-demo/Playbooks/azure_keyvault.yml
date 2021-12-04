@@ -7,7 +7,7 @@
     object_id: 862a7df6-74ba-445a-bc67-33701ffa10dc
     rg_group_name: "dev01resourcegroupjk02"
     location_name: "centralindia"
-    vault_name: "samplekeyvaultjk02"
+    vault_name: "samplekeyvaultjk01"
     environment_name: "DEV"
       
   tasks:
@@ -20,10 +20,11 @@
 
     - name: 2 Create a Keyvault
       azure_rm_keyvault:
-        resource_group: "{{rg_group_name}}"
-        vault_name: "{{vault_name}}"
-        location: "{{location_name}}"
-        vault_tenant: 8f286d24-172e-4e09-b0f0-76f2cf5786ea
+        azure_rm_keyvault:
+      resource_group: "{{rg_group_name}}"
+      vault_name: "{{ vault_name }}"
+      enabled_for_deployment: yes
+      vault_tenant: "{{ tenant_id }}"
         sku:
           name: standard
         access_policies:
@@ -38,11 +39,10 @@
     - name: 3 Create a secretkey in keyvault
       azure_rm_keyvaultsecret:
         secret_name: MySecretjk
-        secret_value: My_name_is_Kumar
+        secret_value: 123456789
         keyvault_uri: https://"{{vault_name}}".vault.azure.net/
         client_id: 215046e5-2683-4633-9529-411a41190ca9
         secret: 69fc600f-e22a-4549-aa7e-a5c194091aa0
-        tenant: "{{tenant_id}}"
         tags:
           environment: "{{environment_name}}"
           applicationlayer: Web 
