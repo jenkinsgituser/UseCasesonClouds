@@ -21,6 +21,7 @@
         resource_group: "{{rg_group_name}}"
         vault_name: "{{keyvault_name}}"
         location: "{{location_name}}"
+        vault_tenant: 8f286d24-172e-4e09-b0f0-76f2cf5786ea
        
     - name: 3 Create a secretkey in keyvault
       azure_rm_keyvaultsecret:
