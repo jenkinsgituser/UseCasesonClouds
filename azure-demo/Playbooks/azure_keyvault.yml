@@ -32,7 +32,7 @@
       azure_rm_keyvaultsecret:
         secret_name: MySecretjk
         secret_value: My_name_is_Kumar
-        keyvault_uri: https://contoso.vault.azure.net/
+        keyvault_uri: https://samplekeyvaultjk01.vault.azure.net/
         state: present
         tags:
           environment: "{{environment_name}}"
