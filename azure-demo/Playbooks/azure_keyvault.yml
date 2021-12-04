@@ -33,7 +33,9 @@
         secret_name: MySecretjk
         secret_value: My_name_is_Kumar
         keyvault_uri: https://samplekeyvaultjk01.vault.azure.net/
-        state: present
+        client_id: 215046e5-2683-4633-9529-411a41190ca9
+        secret: 69fc600f-e22a-4549-aa7e-a5c194091aa0
+        tenant_id: 8f286d24-172e-4e09-b0f0-76f2cf5786ea
         tags:
           environment: "{{environment_name}}"
           applicationlayer: Web 
