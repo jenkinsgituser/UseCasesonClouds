@@ -20,11 +20,10 @@
 
     - name: 2 Create a Keyvault
       azure_rm_keyvault:
-        azure_rm_keyvault:
-      resource_group: "{{rg_group_name}}"
-      vault_name: "{{ vault_name }}"
-      enabled_for_deployment: yes
-      vault_tenant: "{{ tenant_id }}"
+        resource_group: "{{rg_group_name}}"
+        vault_name: "{{ vault_name }}"
+        enabled_for_deployment: yes
+        vault_tenant: "{{ tenant_id }}"
         sku:
           name: standard
         access_policies:
@@ -34,15 +33,12 @@
               - get
               - list
               - set
-              - delete
-       
+              - delete     
+        tags:
+          environment: "{{environment_name}}"
+              
     - name: 3 Create a secretkey in keyvault
       azure_rm_keyvaultsecret:
         secret_name: MySecretjk
         secret_value: 123456789
-        keyvault_uri: https://"{{vault_name}}".vault.azure.net/
-        client_id: 215046e5-2683-4633-9529-411a41190ca9
-        secret: 69fc600f-e22a-4549-aa7e-a5c194091aa0
-        tags:
-          environment: "{{environment_name}}"
-          applicationlayer: Web 
+        keyvault_uri: https://samplekeyvaultjk01.vault.azure.net/
