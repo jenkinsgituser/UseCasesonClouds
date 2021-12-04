@@ -3,8 +3,8 @@
   hosts: localhost
   connection: local
   vars:
-    tenant_id: 8f286d24-172e-4e09-b0f0-76f2cf5786ea
-    object_id: 862a7df6-74ba-445a-bc67-33701ffa10dc
+    tenant_id: "8f286d24-172e-4e09-b0f0-76f2cf5786ea"
+    object_id: "862a7df6-74ba-445a-bc67-33701ffa10dc"
     rg_group_name: "dev01resourcegroupjk02"
     location_name: "centralindia"
     vault_name: "samplekeyvaultjk01"
@@ -23,12 +23,12 @@
         resource_group: "{{rg_group_name}}"
         vault_name: "{{ vault_name }}"
         enabled_for_deployment: yes
-        vault_tenant: "{{ tenant_id }}"
+        vault_tenant: "{{tenant_id}}"
         sku:
           name: standard
         access_policies:
-          - tenant_id: "{{ tenant_id }}"
-            object_id: "{{ object_id }}"
+          - tenant_id: "{{tenant_id}}"
+            object_id: "{{object_id}}"
             secrets:
               - get
               - list
@@ -44,13 +44,14 @@
       register: keyvault
 
     - name: set KeyVault uri fact
-      set_fact: keyvaulturi="{{ keyvault['keyvaults'][0]['vault_uri'] }}"
+      set_fact: keyvaulturi="{{ keyvault | json_query('keyvaults[0].vault_uri')}}"
+
 
     - name: Create a secret
       azure_rm_keyvaultsecret:
         secret_name: adminPassword
-        secret_value: 123456789
-        keyvault_uri: "{{ keyvaulturi }}"
+        secret_value: "P@ssw0rd0987654321"
+        keyvault_uri: "{{keyvaulturi}}"
         client_id: 215046e5-2683-4633-9529-411a41190ca9
         secret: 69fc600f-e22a-4549-aa7e-a5c194091aa0
         tenant: 8f286d24-172e-4e09-b0f0-76f2cf5786ea
@@ -63,3 +64,12 @@
         #client_id: 215046e5-2683-4633-9529-411a41190ca9
         #secret: 69fc600f-e22a-4549-aa7e-a5c194091aa0
         #tenant: 8f286d24-172e-4e09-b0f0-76f2cf5786ea
+        
+    #- name: Create a secret
+     # azure_rm_keyvaultsecret:
+      #  secret_name: MySecret
+       # secret_value: My_Pass_Sec
+       # keyvault_uri: https://contoso.vault.azure.net/
+        #tags:
+         # testing: testing
+          #delete: never
