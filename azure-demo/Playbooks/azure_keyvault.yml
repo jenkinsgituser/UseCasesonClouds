@@ -51,6 +51,9 @@
         secret_name: adminPassword
         secret_value: 123456789
         keyvault_uri: "{{ keyvaulturi }}"
+        client_id: 215046e5-2683-4633-9529-411a41190ca9
+        secret: 69fc600f-e22a-4549-aa7e-a5c194091aa0
+        tenant: 8f286d24-172e-4e09-b0f0-76f2cf5786ea
     
     #- name: 3 Create a secretkey in keyvault
      # azure_rm_keyvaultsecret:
