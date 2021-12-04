@@ -25,7 +25,8 @@
         sku:
           name: standard
         access_policies:
-          - tenant_id: 8f286d24-172e-4e09-b0f0-76f2cf5786ea  
+          - tenant_id: 8f286d24-172e-4e09-b0f0-76f2cf5786ea
+            object_id: 862a7df6-74ba-445a-bc67-33701ffa10dc
        
     - name: 3 Create a secretkey in keyvault
       azure_rm_keyvaultsecret:
