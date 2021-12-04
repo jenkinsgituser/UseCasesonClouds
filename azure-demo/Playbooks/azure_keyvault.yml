@@ -1,0 +1,31 @@
+---
+- name: Create Azure resource group
+  hosts: localhost
+  connection: local
+  vars:
+    rg_group_name: "dev01resourcegroupjk"
+    location_name: "centralindia"
+    keyvault_name: "samplekeyvaultjk01"
+    environment_name: "DEV"
+  
+  tasks:
+    - name: 1 Create a resource group
+      azure_rm_resourcegroup:
+        name: "{{rg_group_name}}"
+        location: "{{location_name}}"
+        tags:
+          environment: "{{environment_name}}"
+
+    - name: 2 Create a Keyvault
+      azure_rm_keyvault:
+        resource_group: "{{rg_group_name}}"
+        vault_name: "{{keyvault_name}}"
+        location: "{{location_name}}"
+       
+    - name: 3 Create a secretkey in keyvault
+      azure_rm_keyvaultsecret:
+        secret_name: MySecretjk
+        secret_value: My_name_is_Kumar
+        tags:
+          environment: "{{environment_name}}"
+          applicationlayer: Web 
