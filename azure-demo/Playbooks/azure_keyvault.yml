@@ -3,13 +3,12 @@
   hosts: localhost
   connection: local
   vars:
-    tenant_id: 8f286d24-172e-4e09-b0f0-76f2cf5786ea
-    object_id: 3497c2d0-c971-4886-b8a3-05465f731417
-    rg_group_name: dev01resourcegroupjk02
-    location_name: centralindia
-    vault_name: samplekeyvaultjk02
-    environment_name: DEV
-
+    tenant_id: "8f286d24-172e-4e09-b0f0-76f2cf5786ea"
+    object_id: "3497c2d0-c971-4886-b8a3-05465f731417"
+    rg_group_name: "dev01resourcegroupjk02"
+    location_name: "centralindia"
+    vault_name: "samplekeyvaultjk02"
+    environment_name: "DEV"
   tasks:
   - name: 1 Create resource group
     azure_rm_resourcegroup:
