@@ -1,75 +1,34 @@
 ---
-- name: Create Azure resource group
+- name: Create Azure key vault
   hosts: localhost
   connection: local
   vars:
-    tenant_id: "8f286d24-172e-4e09-b0f0-76f2cf5786ea"
-    object_id: "862a7df6-74ba-445a-bc67-33701ffa10dc"
+    tenant_id: 8f286d24-172e-4e09-b0f0-76f2cf5786ea
+    object_id: 3497c2d0-c971-4886-b8a3-05465f731417
     rg_group_name: "dev01resourcegroupjk02"
     location_name: "centralindia"
-    vault_name: "samplekeyvaultjk01"
+    vault_name: "samplekeyvaultjk02"
     environment_name: "DEV"
-      
+	
   tasks:
-    - name: 1 Create a resource group
-      azure_rm_resourcegroup:
-        name: "{{rg_group_name}}"
-        location: "{{location_name}}"
-        tags:
-          environment: "{{environment_name}}"
+  - name: 1 Create resource group 
+    azure_rm_resourcegroup:
+      name: "{{rg_group_name}}"
+      location: eastus
 
-    - name: 2 Create a Keyvault
-      azure_rm_keyvault:
-        resource_group: "{{rg_group_name}}"
-        vault_name: "{{ vault_name }}"
-        enabled_for_deployment: yes
-        vault_tenant: "{{tenant_id}}"
-        sku:
-          name: standard
-        access_policies:
-          - tenant_id: "{{tenant_id}}"
-            object_id: "{{object_id}}"
-            secrets:
-              - get
-              - list
-              - set
-              - delete     
-        tags:
-          environment: "{{environment_name}}"
-              
-    - name: Get Key Vault by name
-      azure_rm_keyvault_info:
-        resource_group: "{{rg_group_name}}"
-        name: "{{vault_name}}"
-      register: keyvault
-
-    - name: set KeyVault uri fact
-      set_fact: keyvaulturi="{{ keyvault | json_query('keyvaults[0].vault_uri')}}"
-
-
-    - name: Create a secret
-      azure_rm_keyvaultsecret:
-        secret_name: adminPassword
-        secret_value: "P@ssw0rd0987654321"
-        keyvault_uri: "{{keyvaulturi}}"
-        client_id: 215046e5-2683-4633-9529-411a41190ca9
-        secret: 69fc600f-e22a-4549-aa7e-a5c194091aa0
-        tenant: 8f286d24-172e-4e09-b0f0-76f2cf5786ea
-    
-    #- name: 3 Create a secretkey in keyvault
-     # azure_rm_keyvaultsecret:
-      #  secret_name: MySecretjk
-       # secret_value: 123456789
-        #keyvault_uri: https://samplekeyvaultjk01.vault.azure.net/
-        #client_id: 215046e5-2683-4633-9529-411a41190ca9
-        #secret: 69fc600f-e22a-4549-aa7e-a5c194091aa0
-        #tenant: 8f286d24-172e-4e09-b0f0-76f2cf5786ea
-        
-    #- name: Create a secret
-     # azure_rm_keyvaultsecret:
-      #  secret_name: MySecret
-       # secret_value: My_Pass_Sec
-       # keyvault_uri: https://contoso.vault.azure.net/
-        #tags:
-         # testing: testing
-          #delete: never
+  - name: 2 Create instance of Key Vault
+    azure_rm_keyvault:
+      resource_group: "{{rg_group_name}}"
+      vault_name: "{{ vault_name }}"
+      enabled_for_deployment: yes
+      vault_tenant: "{{ tenant_id }}"
+      sku:
+        name: standard
+      access_policies:
+        - tenant_id: "{{ tenant_id }}"
+          object_id: "{{ object_id }}"
+          secrets:
+            - get
+            - list
+            - set
+            - delete
