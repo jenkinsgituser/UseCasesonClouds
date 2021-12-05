@@ -1,0 +1,25 @@
+---
+- name: Create Azure key vault
+  hosts: localhost
+  connection: local
+  vars:
+    container_registry_name: "testacrjk01"
+    rg_group_name: "dev01resourcegroupjk02"
+    location_name: "centralindia"
+    environment_name: "DEV"
+  tasks:
+  - name: 1 Create resource group
+    azure_rm_resourcegroup:
+      name: "{{rg_group_name}}"
+      location: "{{location_name}}"
+
+  - name: 2 Create an azure container registry
+    azure_rm_containerregistry:
+      name: "{{container_registry_name}}"
+      location: "{{location_name}}"
+      resource_group: "{{rg_group_name}}"
+    admin_user_enabled: true
+    sku: Standard
+    tags:
+      Environment: "{{environment_name}}"
+      Release: beta1
