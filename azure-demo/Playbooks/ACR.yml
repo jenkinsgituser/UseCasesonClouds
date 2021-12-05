@@ -18,8 +18,8 @@
       name: "{{container_registry_name}}"
       location: "{{location_name}}"
       resource_group: "{{rg_group_name}}"
-    admin_user_enabled: true
-    sku: Standard
-    tags:
-      Environment: "{{environment_name}}"
-      Release: beta1
+      admin_user_enabled: true
+      sku: Standard
+      tags:
+        Environment: "{{environment_name}}"
+        Release: beta1
