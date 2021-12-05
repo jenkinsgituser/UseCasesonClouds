@@ -9,7 +9,7 @@
     aks_name: "asktestjk01"
     user_name: "askuser01"
     ssh_pub_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDDFHyNnTOZYpuBUuvev6jG2J7jn4m8CBObOtdtSDy9Qwt87zmmqQ86Bt8JwHFKw9a7c5wSj32HD9rj1DZuw678e1a2a22gLN+XfTN0ohpYVWX1LgTKdsntfXcnqfy7y/P9TJ8szHzayfE4UisoSnUw78dhYYNhFftgk4V/57qRPYHeGTL97TCCeQ9+m29lvcgO7pbI94iq1VJyl6NyBxqBgB18L/UHciAWPJ2dmHhy+9VTba2UwaPArK8/mOMG+lO++h/cb1P/Ctn17aW935pfb/WtNG3dfxGJYxtWIlS9tzGI6pdfo5XaefQA0k2XwzE09Vo0Z3c4xWZPcEi61a8kwIa7BEvaoBkMDvxmcbHCKDs8On3hXF6Kr23VZtNQRRxDjPFrntvwLWUf3haBOfrDPh8xX++t6ZYgONMj3oiDdZqHGbz7W1TrS477AdUTuVjLWoJApv/tYMEFf8at9EO+i4kMH9HRQo8Xaqq8Wm1dCtZ3gMp4GXWjmRF0F+Tvi4s= root@ansibletower02.devops.jk.org"
-    client_id: "215046e5-2683-4633-9529-411a41190ca9"
+    client_id: "3497c2d0-c971-4886-b8a3-05465f731417"
     client_secret: "69fc600f-e22a-4549-aa7e-a5c194091aa0" 
     k8s_version: "1.21.2"
     environment_name: "DEV"
